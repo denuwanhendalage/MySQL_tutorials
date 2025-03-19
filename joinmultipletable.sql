@@ -6,4 +6,11 @@ SELECT o.order_id,
     os.name AS status
 FROM orders o
     JOIN customers c ON o.customer_id = c.customer_id
-    JOIN order_statuses os ON o.status = os.order_status_id
+    JOIN order_statuses os ON o.status = os.order_status_id USE sql_store;
+SELECT o.order_id,
+    c.first_name,
+    sh.name AS shipper_name
+FROM orders o
+    JOIN customers c -- ON o.customer_id=c.customer_id
+    USING(customer_id)
+    JOIN shippers sh USING (shipper_id)
